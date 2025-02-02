@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+<head>
+    <title>CO₂ Details</title>
+</head>
+<body>
+    <h:form>
+        <h1>CO₂ Details für #{countryBean.selectedCountry.name}</h1>
+        <h:panelGrid columns="2">
+            <h:outputLabel value="ID:" />
+            <h:outputText value="#{countryBean.selectedCountry.id}" />
+
+            <h:outputLabel value="Land:" />
+            <h:outputText value="#{countryBean.selectedCountry.name}" />
+
+            <h:outputLabel value="CO₂-Emission (Mio. Tonnen):" />
+            <h:outputText value="#{countryBean.selectedCountry.co2Emission}" />
+        </h:panelGrid>
+        <h:commandButton value="Zurück" action="index.xhtml" />
+    </h:form>
+</body>
+</html>

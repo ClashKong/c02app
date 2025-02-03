@@ -10,26 +10,27 @@ import jakarta.inject.Inject;
 
 @Stateless
 public class CountryService {
+
     @Inject
     private CountryDAO countryDAO;
+
+    public List<Country> getAllCountries() {
+        return countryDAO.getAll();
+    }
 
     public void addCountry(Country country) {
         countryDAO.save(country);
     }
 
-    public List<Country> getAllCountries() {
-        return countryDAO.getAllCountries();
+    public void updateCountry(Country country) {
+        countryDAO.update(country);
     }
 
-    public Country getById(Long id) {  // NEUE METHODE
-        return countryDAO.getById(id);
+    public void deleteCountry(Long id) {
+        countryDAO.delete(id);
     }
-
-    public void updateCountry(Country country) {  // NEUE METHODE
-        countryDAO.updateCountry(country);
+    public Country getById(Long id) {
+        return countryDAO.findById(id);
     }
-
-    public void deleteCountry(Long id) {  // NEUE METHODE
-        countryDAO.deleteCountry(id);
-    }
+    
 }

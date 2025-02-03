@@ -1,24 +1,16 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-<head>
-    <title>CO₂ Details</title>
-</head>
-<body>
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Countries</title>
+</h:head>
+<h:body>
     <h:form>
-        <h1>CO₂ Details für #{countryBean.selectedCountry.name}</h1>
-        <h:panelGrid columns="2">
-            <h:outputLabel value="ID:" />
-            <h:outputText value="#{countryBean.selectedCountry.id}" />
-
-            <h:outputLabel value="Land:" />
-            <h:outputText value="#{countryBean.selectedCountry.name}" />
-
-            <h:outputLabel value="CO₂-Emission (Mio. Tonnen):" />
-            <h:outputText value="#{countryBean.selectedCountry.co2Emission}" />
-        </h:panelGrid>
-        <h:commandButton value="Zurück" action="index.xhtml" />
+        <p:dataTable value="#{countryBean.countries}" var="country">
+            <p:column headerText="Name">#{country.name}</p:column>
+            <p:column headerText="Code">#{country.code}</p:column>
+        </p:dataTable>
     </h:form>
-</body>
+</h:body>
 </html>

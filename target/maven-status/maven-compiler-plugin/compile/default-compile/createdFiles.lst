@@ -1,11 +1,14 @@
-com\co2app\model\Country.class
 com\co2app\model\UserBean.class
 com\co2app\model\AdminBean.class
 com\co2app\dao\CountryDAO.class
-com\co2app\dao\UserDAO.class
 com\co2app\model\CountryBean.class
 com\co2app\model\ChartBean.class
 com\co2app\service\CountryService.class
 com\co2app\config\JaxRsActivator.class
 com\co2app\api\CountryResource.class
+com\co2app\model\Country.class
+com\co2app\model\AuthBean.class
+com\co2app\dao\UserDAO.class
+com\co2app\service\UserService.class
+com\co2app\model\User$Role.class
 com\co2app\model\User.class

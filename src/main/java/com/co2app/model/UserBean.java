@@ -1,60 +1,58 @@
 package com.co2app.model;
 
-import com.co2app.dao.UserDAO;
-import jakarta.enterprise.context.SessionScoped;
+import java.io.Serializable;
+import java.util.List;
+
+import com.co2app.service.UserService;
+
+import jakarta.enterprise.context.SessionScoped; // Falls nicht vorhanden, hinzugefügt
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
-import jakarta.faces.context.FacesContext;
-import java.io.Serializable;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.nio.charset.StandardCharsets;
-import java.util.Base64;
 
 @Named
 @SessionScoped
 public class UserBean implements Serializable {
-    @Inject
-    private UserDAO userDAO;
 
     private User user = new User();
-    private boolean loggedIn = false;
+    private List<User> userList;
 
-    public String register() {
-        user.setPassword(hashPassword(user.getPassword())); // Passwort hashen
-        userDAO.addUser(user);
-        return "login.xhtml?faces-redirect=true"; // Nach Registrierung zur Login-Seite
-    }
+    @Inject
+    private UserService userService;
 
     public String login() {
-        User dbUser = userDAO.findByUsername(user.getUsername());
-        if (dbUser != null && dbUser.getPassword().equals(hashPassword(user.getPassword()))) {
-            loggedIn = true;
-            FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", dbUser);
-            return "index.xhtml?faces-redirect=true"; // Weiter zur Hauptseite
+        User loggedInUser = userService.findByUsernameAndPassword(user.getUsername(), user.getPassword());
+        if (loggedInUser != null) {
+            return "dashboard.xhtml?faces-redirect=true";
         }
-        return "login.xhtml?faces-redirect=true"; // Fehlerhafte Anmeldung
+        return "login.xhtml?error=true";
     }
 
-    public String logout() {
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-        loggedIn = false;
+    public String register() {
+        userService.save(user);
         return "login.xhtml?faces-redirect=true";
     }
 
-    private String hashPassword(String password) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] hash = md.digest(password.getBytes(StandardCharsets.UTF_8));
-            return Base64.getEncoder().encodeToString(hash);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException("Fehler beim Hashing", e);
-        }
+    public void updateUser() {
+        userService.update(user);
     }
 
-    // Getter & Setter
-    public User getUser() { return user; }
-    public void setUser(User user) { this.user = user; }
+    public List<User> getAllUsers() {
+        return userService.getAll();
+    }
 
-    public boolean isLoggedIn() { return loggedIn; }
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    // Getter für userList, damit die Variable verwendet wird
+    public List<User> getUserList() {
+        if (userList == null) {
+            userList = userService.getAll();
+        }
+        return userList;
+    }
 }

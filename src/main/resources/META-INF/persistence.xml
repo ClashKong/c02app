@@ -1,14 +1,25 @@
-<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
-    <persistence-unit name="co2PU">
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="3.0">
+    <persistence-unit name="co2app" transaction-type="JTA">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>jdbc/MySQLPool</jta-data-source>
+
+        
         <class>com.co2app.model.Country</class>
+        <class>com.co2app.model.User</class>
+
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/co2db?serverTimezone=UTC"/>
-            <property name="jakarta.persistence.jdbc.user" value="root"/>
-            <property name="jakarta.persistence.jdbc.password" value="password"/>
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/co2apps?serverTimezone=UTC"/>
+            <property name="jakarta.persistence.jdbc.username" value="co2user"/>
+            <property name="jakarta.persistence.jdbc.password" value="lolipop66215"/>
+
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="hibernate.transaction.jta.platform" value="org.hibernate.engine.transaction.jta.platform.internal.SunOneJtaPlatform"/>
+            <property name="hibernate.transaction.jta.platform" value="jakarta.persistence.TransactionManager"/>
+
         </properties>
     </persistence-unit>
 </persistence>

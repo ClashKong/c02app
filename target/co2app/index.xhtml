@@ -1,38 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-<head>
-    <title>CO₂ Emissionen</title>
-</head>
-<body>
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Home</title>
+</h:head>
+<h:body>
     <h:form>
-        <h1>CO₂ Emissionen nach Land
-            <h:commandButton value="CO₂ Diagramm anzeigen" action="chart.xhtml" />
-<h:panelGroup rendered="#{userBean.user.role eq 'ADMIN'}">
-    <h:commandButton value="Admin-Bereich" action="admin.xhtml" />
-</h:panelGroup>
-
-<br/><br/>
-
-        </h1>
-        <p:dataTable var="country" value="#{countryBean.allCountries}" border="1">
-            <p:column headerText="ID">
-                <h:outputText value="#{country.id}" />
-            </p:column>
-            <p:column headerText="Land">
-                <h:outputText value="#{country.name}" />
-            </p:column>
-            <p:column headerText="CO₂-Emission (Mio. Tonnen)">
-                <h:outputText value="#{country.co2Emission}" />
-            </p:column>
-            <p:column headerText="Details">
-                <h:link outcome="country.xhtml">
-                    <h:outputText value="Ansehen" />
-                    <f:param name="id" value="#{country.id}" />
-                </h:link>
-            </p:column>
-        </p:dataTable>
+        <h:outputText value="Welcome to the application!" />
+        <h:commandButton value="Login" action="login.xhtml" />
     </h:form>
-</body>
+</h:body>
 </html>

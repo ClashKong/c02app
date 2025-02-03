@@ -2,50 +2,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-<head>
-    <title>CO₂ Admin</title>
-</head>
-<body>
+<h:head>
+    <title>Admin Panel</title>
+</h:head>
+<h:body>
     <h:form>
-        <h1>CO₂ Datenverwaltung</h1>
-
-        <p:dataTable var="country" value="#{adminBean.countries}" editable="true">
-            <p:column headerText="ID">
-                <h:outputText value="#{country.id}" />
-            </p:column>
-
-            <p:column headerText="Land">
-                <p:cellEditor>
-                    <f:facet name="output"><h:outputText value="#{country.name}" /></f:facet>
-                    <f:facet name="input"><p:inputText value="#{country.name}" /></f:facet>
-                </p:cellEditor>
-            </p:column>
-
-            <p:column headerText="CO₂-Emissionen">
-                <p:cellEditor>
-                    <f:facet name="output"><h:outputText value="#{country.co2Emission}" /></f:facet>
-                    <f:facet name="input"><p:inputText value="#{country.co2Emission}" /></f:facet>
-                </p:cellEditor>
-            </p:column>
-
-            <p:column headerText="Aktionen">
-                <p:commandButton value="Löschen" action="#{adminBean.deleteCountry(country.id)}" update="@form" />
-            </p:column>
-        </p:dataTable>
-
-        <h2>Neues Land hinzufügen</h2>
-        <p:panel>
-            <h:outputLabel value="Land:" />
-            <p:inputText value="#{adminBean.selectedCountry.name}" />
-
-            <h:outputLabel value="CO₂-Emissionen:" />
-            <p:inputText value="#{adminBean.selectedCountry.co2Emission}" />
-
-            <p:commandButton value="Hinzufügen" action="#{adminBean.addCountry}" update="@form" />
+        <p:panel header="Admin Dashboard">
+            <p:commandButton value="Logout" action="#{authBean.logout}" />
         </p:panel>
-
-        <br/>
-        <h:commandButton value="Zurück" action="index.xhtml" />
     </h:form>
-</body>
+</h:body>
 </html>

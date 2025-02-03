@@ -2,15 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:p="http://primefaces.org/ui">
-<head>
-    <title>CO₂ Emissionen</title>
-</head>
-<body>
+<h:head>
+    <title>Chart</title>
+</h:head>
+<h:body>
     <h:form>
-        <h1>CO₂ Emissionen nach Land</h1>
-        <p:barChart model="#{chartBean.barModel}" style="width:600px; height:400px;" />
-        <br/>
-        <h:commandButton value="Zurück zur Übersicht" action="index.xhtml" />
+        <p:chart type="bar" model="#{chartBean.barModel}" />
     </h:form>
-</body>
+</h:body>
 </html>

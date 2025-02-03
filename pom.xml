@@ -8,30 +8,24 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-     <properties>
-       <maven.compiler.release>17</maven.compiler.release>
-     </properties>
-
+    <properties>
+        <maven.compiler.release>17</maven.compiler.release>
+    </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.primefaces</groupId>
-            <artifactId>primefaces</artifactId>
-            <version>12.0.0</version>
-        </dependency>
-        
+        <!-- Jakarta EE API -->
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>9.1.0</version>
+            <version>10.0.0</version>  
             <scope>provided</scope>
         </dependency>
 
-        <!-- JAX-RS für REST -->
+        <!-- Hibernate Core für JPA -->
         <dependency>
-            <groupId>org.glassfish.jersey.containers</groupId>
-            <artifactId>jersey-container-servlet</artifactId>
-            <version>3.0.2</version>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.2.6.Final</version>
         </dependency>
 
         <!-- MySQL Treiber -->
@@ -41,11 +35,19 @@
             <version>8.0.33</version>
         </dependency>
 
-        <!-- Hibernate Core für JPA -->
+        <!-- PrimeFaces -->
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.6.15.Final</version>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>12.0.0</version>
+        </dependency>
+        
+
+        <!-- BCrypt für Passwort-Hashing -->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
         </dependency>
     </dependencies>
 

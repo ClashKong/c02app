@@ -43,4 +43,21 @@ public class CountryDAO {
             em.merge(country);
         }
     }
+    public List<Country> getAll() {
+        return em.createQuery("SELECT c FROM Country c", Country.class).getResultList();
+    }
+    
+    public void delete(Long id) {
+        Country country = em.find(Country.class, id);
+        if (country != null) {
+            em.remove(country);
+        }
+    }
+    public void update(Country country) {
+        em.merge(country);
+    }
+    public Country findById(Long id) {
+        return em.find(Country.class, id);
+    }
+    
 }
